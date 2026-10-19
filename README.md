@@ -91,6 +91,34 @@ Invoices, receipts and payment challenges are **out of scope for version 1**:
 a payment may `reference` one by `{ kind, id, hash }`, and the evaluator does
 not read it. See `SPEC.md` §7.
 
+## The commerce layer, end to end
+
+`pay-policy/1` is the policy; it is not the only piece of the stack's commerce
+layer, and the other pieces live in their own repositories rather than being
+restated here. Each row below is a real repository with its own status, read
+from it rather than typed twice:
+
+| # | Piece | What it does | Repository | Status |
+|---|---|---|---|---|
+| 1 | Policy | `pay-policy/1` itself — the format and the allow / deny / escalate evaluator this repository holds | this repository | draft; no adopter yet |
+| 2 | Wallet execution | Governed economic agency on Tether's WDK — the isolated signer, the policy-deferring `TransactionPolicy`, testnets only by decision | [flashyos-wdk](https://github.com/FlashyLabs/flashyos-wdk) | exists; public mirror of the Apache-2.0 part of FlashyOS |
+| 3 | Spend grading | Grades a proposed spend against a per-agent envelope before anything signs — ALLOW, ESCALATE or DENY, always with a reason | [wdk-policy-guard](https://github.com/FlashyLabs/wdk-policy-guard) | published, pre-1.0 (`0.2.0`) |
+| 4 | Staking | A fixed-term lock on a balance a provider already holds — no on-chain contract, only the yield is a real write | [wdk-staking-kit](https://github.com/FlashyLabs/wdk-staking-kit) | published, pre-1.0 (`0.2.0`) |
+| 5 | Capability audit | Scans installed WDK packages and classifies their chains as mainnet, testnet or unknown — against a maintained registry, never a guess | [wdk-capability-audit](https://github.com/FlashyLabs/wdk-capability-audit) | published, pre-1.0 (`0.1.0`); its own chain-declaration convention is unverified against a real WDK release, and it says so |
+| 6 | Settlement | A thin service over the ledger that holds Flashy Gold, issues rewards and enforces the consent gate — draft, never execute, moves a holder's value | [flashy-rails](https://github.com/FlashyLabs/flashy-rails) | exists, private |
+| 7 | Ledger | The append-only, multi-asset engine underneath settlement — balance can't go negative, identity is opaque, replay is idempotent | [flashy-ledger](https://github.com/FlashyLabs/flashy-ledger) | exists, private |
+| 8 | Contracts | The estate's Solidity and the published identity package it settles against on-chain | [flashy-contracts](https://github.com/FlashyLabs/flashy-contracts) | exists, private |
+
+Three of the eight are real, published npm packages anyone can install today —
+pre-1.0, versioned, independently tested. Three more are private
+implementations that exist and carry real weight (Flashy Gold moves through
+them) without being open source yet. Neither is a defect; a protocol is worth
+owning only if others can conform to it, so the spec goes public and the
+estate's own edge stays private. No row here claims `live` or `launched`
+until the estate licence register has opened that repository and an
+independent adopter is named — the same discipline `npm run lint`'s house
+rules hold this repository to.
+
 ## Layout
 
 | Path | What it is |
