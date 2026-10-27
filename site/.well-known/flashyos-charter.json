@@ -9,7 +9,7 @@
   "repositories": [
     {
       "name": "agentpay",
-      "url": "github.com/FlashyLabs/agentpay",
+      "url": "github.com/AgenteLabs/agentpay",
       "default": true,
       "holds": [
         "spec",
