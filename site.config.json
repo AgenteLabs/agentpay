@@ -43,8 +43,8 @@
     }
   ],
   "links": {
-    "hub": "https://github.com/FlashyLabs/web4",
-    "spec": "https://github.com/FlashyLabs/agentpay",
-    "repo": "https://github.com/FlashyLabs/agentpay"
+    "hub": "https://github.com/AgenteLabs/web4",
+    "spec": "https://github.com/AgenteLabs/agentpay",
+    "repo": "https://github.com/AgenteLabs/agentpay"
   }
 }

@@ -154,7 +154,7 @@ rules hold this repository to.
 node scripts/build-site.mjs   # regenerate site/ from site.config.json + the vendored inputs
 ```
 
-"Committed is not served": the authoritative check runs against the live domain after deploy (`npx @flashyos/conformance <domain> --level 2`). `vercel.json` sets the output directory to `site` with no framework; the canonical base is `https://flashylabs.github.io/agentpay/` until the property has its own domain.
+"Committed is not served": the authoritative check runs against the live domain after deploy (`npx @flashyos/conformance <domain> --level 2`). `vercel.json` sets the output directory to `site` with no framework; the canonical base is `https://agentelabs.github.io/agentpay/` until the property has its own domain.
 
 Status: draft; the institutional front door was generated 2026-09-29. No adopter yet; nothing here has settled a real payment, and the format is not published as a standard.
 
