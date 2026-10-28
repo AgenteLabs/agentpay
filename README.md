@@ -158,4 +158,18 @@ node scripts/build-site.mjs   # regenerate site/ from site.config.json + the ven
 
 Status: draft; the institutional front door was generated 2026-09-29. No adopter yet; nothing here has settled a real payment, and the format is not published as a standard.
 
+## Where this sits: five payment layers
+
+An agent that spends needs five different things. Each is a separate layer with one job, and each states what it never does, so the layers can be adopted one at a time without any of them claiming the others' work.
+
+| Layer | Repository | Does | Never does |
+|---|---|---|---|
+| Format | [agentpay](https://github.com/AgenteLabs/agentpay) | Defines `pay-policy/1` and evaluates a payment to allow, deny or escalate | Move value, hold keys or sign |
+| Guard | [wdk-policy-guard](https://github.com/AgenteLabs/wdk-policy-guard) | Grades a spend against a per-agent envelope before a wallet signs | Decide the policy itself or settle anything |
+| Consent | flashy-rails | Holds a payment until the human it concerns approves it | Approve on a human's behalf |
+| Mandate | [mandate](https://github.com/AgenteLabs/mandate) | Applies one human-set mandate across several payment rails | Choose a rail for its own benefit or take custody |
+| Dispute | [holdfast](https://github.com/AgenteLabs/holdfast) | Records invoices, milestones and evidence, and routes a dispute to a named human or agreed arbiter | Decide a dispute itself |
+
+mandate and holdfast are at thesis stage and nothing in them is live; the table describes what each is for, not what is deployed.
+
 Licensed under Apache-2.0 (holder Flashy Labs); the estate register in flashyos `tools/estate-licences.mjs` is the authority.
