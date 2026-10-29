@@ -35,14 +35,14 @@ for (const file of files.filter((f) => f.endsWith('.json'))) {
 }
 
 // The estate register (flashyos tools/estate-licences.mjs) names this repository
-// Apache-2.0, holder Flashy Labs — the register is the authority, so the LICENSE
+// Apache-2.0, holder Agente Labs — the register is the authority, so the LICENSE
 // must be present and must carry that grant and that holder.
 if (!existsSync(join(ROOT, 'LICENSE'))) {
-  failures.push('LICENSE: the estate register names this repository Apache-2.0 (holder Flashy Labs); the LICENSE file must be present');
+  failures.push('LICENSE: the estate register names this repository Apache-2.0 (holder Agente Labs); the LICENSE file must be present');
 } else {
   const licence = readFileSync(join(ROOT, 'LICENSE'), 'utf8');
   if (!licence.includes('Apache License')) failures.push('LICENSE: must be the Apache License text');
-  if (!licence.includes('Copyright 2026 Flashy Labs')) failures.push('LICENSE: must name the holder — Copyright 2026 Flashy Labs');
+  if (!licence.includes('Copyright 2026 Agente Labs')) failures.push('LICENSE: must name the holder — Copyright 2026 Agente Labs');
 }
 
 const pkg = JSON.parse(readFileSync(join(ROOT, 'package.json'), 'utf8'));
@@ -51,7 +51,7 @@ for (const field of ['dependencies', 'devDependencies', 'peerDependencies', 'opt
 }
 
 const readme = readFileSync(join(ROOT, 'README.md'), 'utf8').trimEnd().split('\n');
-const LICENCE_LINE = 'Licensed under Apache-2.0 (holder Flashy Labs); the estate register in flashyos `tools/estate-licences.mjs` is the authority.';
+const LICENCE_LINE = 'Licensed under Apache-2.0 (holder Agente Labs); the estate register in flashyos `tools/estate-licences.mjs` is the authority.';
 if (readme[readme.length - 1] !== LICENCE_LINE) failures.push(`README.md: final line must be exactly: ${LICENCE_LINE}`);
 
 if (failures.length) {
